@@ -4,7 +4,7 @@
 
 body {
 	background: rgb(249,249,249);
-	font-family: georgia,palatino,Arial,serif;
+	font-family: 'Playfair Display','Averia Serif Libre',georgia,palatino,Arial,serif;
 	font-size: 16px; /* default font size for your site */
 }
 
@@ -30,22 +30,23 @@ nav ul li a {
 	display: block;
 	text-decoration: none;
 	margin-bottom: 0.4rem;
-	opacity: 0.2;
 	color: black;
 	font-size: 1.4rem;
-	letter-spacing:0.15rem;
+	letter-spacing:0.2rem;
 }
 
 nav .menu li a {
 	color: red;
+	font-size: 1.3rem;
+	letter-spacing:0.1rem;
 }
 
 nav ul li a:hover {
-	opacity: 0.6;	
+	text-shadow: 1px 1px 10px;
 }
 
 header .selected {
-	opacity: 1;	
+	text-shadow: 2px 2px 6px;
 }
 
 
@@ -69,32 +70,32 @@ header .selected {
 	float: left;
 	margin: 1%;
 	width: 98%;
-	opacity: 0.3;
+	opacity: 1;
 }
 
 .twophotos li img{
 	float: left;
 	margin: 1%;
 	width: 48%;
-	opacity: 0.3;
+	opacity: 1;
 }
 
 .threephotos li img{
 	float: left;
 	margin: 1%;
 	width: 31.3%;
-	opacity: 0.3;
+	opacity: 1;
 }
 
 .fourphotos li img{
 	float: left;
 	margin: 1%;
 	width: 23%;
-	opacity: 0.3;
+	opacity: 1;
 }
 
 a:hover img{
-	opacity: 1;
+	opacity: 0.7;
 }
 
 /*****************************/		
@@ -105,7 +106,7 @@ a:hover img{
 	float: left;
 	margin: 1%;
 	width: 98%;
-	opacity: 0.2;
+	opacity: 1;
 	font-size: 1.1rem;
 	letter-spacing:0.05rem;
 	text-align: right;
@@ -117,12 +118,12 @@ a:hover img{
 }
 
 #bio:hover{
-	opacity: 1;
+	opacity: 0.7;
 }
 
 #bio a:hover{
 	text-decoration: underline;
-	opacity: 1;
+	opacity: 0.7;
 }
 
 
@@ -145,7 +146,7 @@ footer p {
 /*       Media queries       */
 /*****************************/	
 
-@media (max-width: 700px) {
+@media (max-width: 767px) {
 	header {
 		position: static;
 		width: 96%;
@@ -155,8 +156,8 @@ footer p {
 	nav ul li a {
 		display: inline-block;
 		float: right;
-		font-size: 1.2rem;
-		letter-spacing:0.05rem;
+		font-size: 1.3rem;
+		letter-spacing:0.1rem;
 		line-height: 1.1rem;	
 	}
 
@@ -165,9 +166,14 @@ footer p {
 		margin-left: 1%;
 	}
 
+	nav .menu {
+		font-size: 1.2rem;
+		letter-spacing:0.1rem;	
+	}
+
 	.menu {
-		margin-right: 1%;
 		float: right;
+		margin-right: 1%;
 	}
 
 	#portfolio {
@@ -176,18 +182,10 @@ footer p {
 	}
 
 	footer p {
-	font-size: 0.7rem;
+		font-size: 0.7rem;
 	}
 
 	#bio {
-	font-size: 1rem;
-	letter-spacing:0.03rem;
+		font-size: 1rem;
+		letter-spacing:0.03rem;
 }
-
-
-/*****************************/
-/*  JS click through image   */
-/*****************************/
-
-
-
