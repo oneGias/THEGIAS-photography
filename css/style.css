@@ -32,13 +32,12 @@ nav ul li a {
 	margin-bottom: 0.4rem;
 	color: black;
 	font-size: 1.4rem;
-	letter-spacing:0.2rem;
+	letter-spacing:0.1rem;
 }
 
 nav .menu li a {
 	color: red;
 	font-size: 1.3rem;
-	letter-spacing:0.1rem;
 }
 
 nav ul li a:hover {
@@ -46,7 +45,7 @@ nav ul li a:hover {
 }
 
 header .selected {
-	text-shadow: 2px 2px 6px;
+	text-shadow: 2px 2px 15px;
 }
 
 
@@ -66,7 +65,7 @@ header .selected {
 	list-style: none;
 }
 
-.onephoto a img {
+.onephoto img {
 	float: left;
 	margin: 1%;
 	width: 98%;
@@ -95,8 +94,24 @@ header .selected {
 }
 
 a:hover img{
-	opacity: 0.7;
+	opacity: 0.6;
 }
+
+/*****************************/		
+/*         Gallery            */
+/*****************************/	
+
+#gallery {
+	width: 96%;
+	margin: 2% 2% 0% 2%;
+}
+
+#portfolio ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
 
 /*****************************/		
 /*          about            */
@@ -117,14 +132,14 @@ a:hover img{
 	text-decoration: none;
 }
 
-#bio:hover{
-	opacity: 0.7;
+#bio p:hover{
+	opacity: 0.6;
 }
 
 #bio a:hover{
 	text-decoration: underline;
-	opacity: 0.7;
-}
+/*	opacity: 0.6;
+*/}
 
 
 /*****************************/		
@@ -138,8 +153,7 @@ footer {
 }
 
 footer p {
-	color: rgb(210,210,210);
-	font-size: 1rem;
+	font-size: 0.9rem;
 }
 
 /*****************************/		
