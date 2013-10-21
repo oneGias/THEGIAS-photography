@@ -15,22 +15,23 @@ function populatePhotoArray() {
 function getClickedPhotoIndex() {
 	$('#portfolio a img').on('click', function(event) {
 		event.preventDefault();
-		console.log($(this).attr('src'));
+/*		console.log($(this).attr('src'));*/
 		clickedPhotoIndex = parseInt(photoPathArray.indexOf($(this).attr('src')));
 		firstGalleryPhoto = photoPathArray[clickedPhotoIndex]
-		console.log('clicked on photo ' + firstGalleryPhoto);
+/*		console.log('clicked on photo ' + firstGalleryPhoto);*/
 	});
 };
 
-function openGalleryPage() {
+
+function openGalleryView() {
 	$('#portfolio a img').on('click', function(event) {
 		event.preventDefault();
-		window.open ('gallery.html','_self',false);
+		var w = window.open('gallery.html','_self',false);
 		console.log('got to openGalleryPage ' + firstGalleryPhoto);
-		$('#gallery img').attr('src', firstGalleryPhoto).load( function(){
-			this.width;
-		});
-/*		console.log('update gallery photo '+ photoPathArray[parseInt(clickedPhotoIndex)].value);*/
+		var htmlFirstGalleryPhoto = '<img src="' + firstGalleryPhoto + '"/>';
+		$(w.document.body).html(htmlFirstGalleryPhoto).addClass('gallery');
+		console.log('holding photo???');
+		
 	});
 };
 
@@ -40,7 +41,7 @@ function openGalleryPage() {
 $(document).ready( function() {
 	populatePhotoArray();
 	getClickedPhotoIndex();
-	openGalleryPage();
+	openGalleryView();
 });
 
 
