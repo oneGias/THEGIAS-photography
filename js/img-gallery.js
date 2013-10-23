@@ -3,6 +3,7 @@ var photoPathArray = new Array();
 var clickedPhotoIndex;
 var firstGalleryPhoto;
 var htmlGallery;
+var galleryWindow;
 
 /*populate array with all photo on the page*/
 function populatePhotoArray() {
@@ -27,27 +28,31 @@ function getClickedPhotoIndex() {
 function openGalleryView() {
 	$('#portfolio a img').on('click', function(event) {
 		event.preventDefault();
-		var w = window.open('gallery.html','_self',false);
+		galleryWindow = window.open('gallery.html','_self',false);
 		console.log('got to openGalleryPage ' + firstGalleryPhoto);
-		var htmlGallery = '<img src="' + firstGalleryPhoto + '"/>';
-		$(w.document.body).html(htmlGallery);
-		alert('pause');
-		console.log('holding photo???');
+		$(galleryWindow.document.body).html('<img src="' + firstGalleryPhoto + '"/>');
+		galleryWindow.document.close();
+		console.log('galleryWindow closed');
 	});
 };
 
 /*handles navigation in the gallery view*/
-/*function updateGalleryPhoto() {
-	on mouse-click/right-arrow-key/right-arrow-button 'next'
+function nextGalleryPhoto() {
+	$('#gallery').on('click', function(event) {
+
+	});
+/*	on mouse-click/right-arrow-key/right-arrow-button 'next'
 	on delete/left-arrow-key/left-arrow-button 'previous'
-	on esc revert to last image shown
-};*/
+	on esc revert to last image shown*/
+};
 
 /*calling all functions in the right order*/
 $(document).ready( function() {
 	populatePhotoArray();
 	getClickedPhotoIndex();
 	openGalleryView();
-/*	updateGalleryPhoto;*/
+/*	nextGalleryPhoto;
+	previousGalleryPhoto;
+	exitPhotoGallery*/
 });
 
