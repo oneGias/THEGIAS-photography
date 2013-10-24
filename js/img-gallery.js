@@ -1,9 +1,14 @@
 /*define all variables*/
-var photoPathArray = new Array();
+var photoPathArray = [];
+var nextPhoto = [13, 32, 39, 40];  /*enter, space, right and down arrow*/
+var previousPhoto = [37, 38];  /*left and up arrow*/
 var clickedPhotoIndex;
-var firstGalleryPhoto;
 var htmlGallery;
 var galleryWindow;
+var firstGalleryPhoto;
+var htmlFirstGalleryPhoto;
+var keyboardInput;
+
 
 /*populate array with all photo on the page*/
 function populatePhotoArray() {
@@ -29,17 +34,33 @@ function openGalleryView() {
 	$('#portfolio a img').on('click', function(event) {
 		event.preventDefault();
 		galleryWindow = window.open('gallery.html','_self',false);
-		console.log('got to openGalleryPage ' + firstGalleryPhoto);
-		$(galleryWindow.document.body).html('<img src="' + firstGalleryPhoto + '"/>');
-		galleryWindow.document.close();
+		console.log('opening Gallery Page with ' + firstGalleryPhoto);
+		htmlFirstGalleryPhoto = '<a href="#"><img src="' + firstGalleryPhoto + '"/></a>'
+		$(galleryWindow.document).ready( function() {      /* ???? looks like doc.ready doesnt wrk here */
+			$(this.body).html(htmlFirstGalleryPhoto);      /* ???? why .find('#gallery') doesn't work? */
+			prompt('pausing after adding image html to #gallery');
+		});
 		console.log('galleryWindow closed');
 	});
 };
 
 /*handles navigation in the gallery view*/
-function nextGalleryPhoto() {
-	$('#gallery').on('click', function(event) {
+function navigatePhotoGallery() {
+	$('#gallery').on('keyup', function(event) {
+		event.preventDefault();
+		keyboardInput = event.which;
+		console.log(keyboardInput);
+		if (nextPhoto.indexOf(keyboardInput) >= 0) {     /* ???????? can I add mouse click here? */
+			clickedPhotoIndex += 1;
+			$(this).html(htmlFirstGalleryPhoto);
+			console.log('nextphoto is ' + htmlFirstGalleryPhoto);
+		} else if (previousPhoto.indexOf(keyboardInput) >= 0) {
+			clickedPhotoIndex -= 1;
+			$(this).html(htmlFirstGalleryPhoto);
+			console.log('previous photo is ' + htmlFirstGalleryPhoto);
+		} else if (keyboardInput == 27) {    /* ???????? pressing escape I would liek to return to original page */
 
+		}
 	});
 /*	on mouse-click/right-arrow-key/right-arrow-button 'next'
 	on delete/left-arrow-key/left-arrow-button 'previous'
@@ -51,6 +72,7 @@ $(document).ready( function() {
 	populatePhotoArray();
 	getClickedPhotoIndex();
 	openGalleryView();
+	navigatePhotoGallery();
 /*	nextGalleryPhoto;
 	previousGalleryPhoto;
 	exitPhotoGallery*/

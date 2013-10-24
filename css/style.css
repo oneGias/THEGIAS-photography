@@ -101,7 +101,7 @@ a:hover img{
 /*         Gallery            */
 /*****************************/	
 
-.gallery {
+#gallery a img{
 	width: 96%;
 	margin: 2% 2% 0% 2%;
 }
