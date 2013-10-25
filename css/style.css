@@ -101,11 +101,22 @@ a:hover img{
 /*         Gallery            */
 /*****************************/	
 
-#gallery a img{
-	width: 96%;
-	margin: 2% 2% 0% 2%;
+#gallery {
+	width: 100%;
 }
 
+#gallery a {
+	width: 100%;
+}
+
+#gallery a img{
+	width: 100%;
+	border-width: 2% 2% 0% 2%;
+}
+
+#gallery a:hover img{
+	opacity: 1;
+}
 
 /*****************************/		
 /*          about            */

@@ -7,14 +7,16 @@ var htmlGallery;
 var galleryWindow;
 var firstGalleryPhoto;
 var htmlFirstGalleryPhoto;
+var htmlGalleryPhoto;
 var keyboardInput;
+var fullScreenDiv
 
 
 /*populate array with all photo on the page*/
 function populatePhotoArray() {
 	$('#portfolio a img').each( function(i) {
 		photoPathArray[i] = $(this).attr('src');
-		console.log(photoPathArray[i]);
+/*		console.log(photoPathArray[i]);*/
 	});
 };
 
@@ -30,51 +32,109 @@ function getClickedPhotoIndex() {
 };
 
 /*open gallery view, in the same tab, showing clicked photo*/
-function openGalleryView() {
+function switchToGalleryView() {
+	$('#gallery').hide();
 	$('#portfolio a img').on('click', function(event) {
 		event.preventDefault();
-		galleryWindow = window.open('gallery.html','_self',false);
-		console.log('opening Gallery Page with ' + firstGalleryPhoto);
 		htmlFirstGalleryPhoto = '<a href="#"><img src="' + firstGalleryPhoto + '"/></a>'
-		$(galleryWindow.document).ready( function() {      /* ???? looks like doc.ready doesnt wrk here */
-			$(this.body).html(htmlFirstGalleryPhoto);      /* ???? why .find('#gallery') doesn't work? */
-			prompt('pausing after adding image html to #gallery');
-		});
-		console.log('galleryWindow closed');
+		$('header, #portfolio, footer').hide();
+		goFullScreen();
+		$('#gallery').show();
+		$('#gallery').html(htmlFirstGalleryPhoto);
+		console.log('just gone full screen');
 	});
 };
 
 /*handles navigation in the gallery view*/
 function navigatePhotoGallery() {
-	$('#gallery').on('keyup', function(event) {
+/*	$('#gallery').on('click', function(event) {
 		event.preventDefault();
+			goToNextPhoto();
+			console.log('logging clicks');
+		});*/
+	$('#gallery').on('keyup', function(event) {
 		keyboardInput = event.which;
-		console.log(keyboardInput);
-		if (nextPhoto.indexOf(keyboardInput) >= 0) {     /* ???????? can I add mouse click here? */
-			clickedPhotoIndex += 1;
-			$(this).html(htmlFirstGalleryPhoto);
-			console.log('nextphoto is ' + htmlFirstGalleryPhoto);
+		console.log('logging key inputs ' + keyboardInput);
+		if (nextPhoto.indexOf(keyboardInput) >= 0) {
+			goToNextPhoto();
 		} else if (previousPhoto.indexOf(keyboardInput) >= 0) {
-			clickedPhotoIndex -= 1;
-			$(this).html(htmlFirstGalleryPhoto);
-			console.log('previous photo is ' + htmlFirstGalleryPhoto);
-		} else if (keyboardInput == 27) {    /* ???????? pressing escape I would liek to return to original page */
-
-		}
+			goToPreviousPhoto();
+		} /*else if (keyboardInput == (27 || 46) {  
+			$('header, #portfolio, footer').show();
+			$('#gallery').hide();
+		}   ????? pressing delete reloads the page?    */
+		return false;
 	});
 /*	on mouse-click/right-arrow-key/right-arrow-button 'next'
 	on delete/left-arrow-key/left-arrow-button 'previous'
 	on esc revert to last image shown*/
 };
 
+
+function goToNextPhoto() {
+	if (clickedPhotoIndex < (photoPathArray.length-1)) {
+		clickedPhotoIndex += 1;
+	} else if (clickedPhotoIndex == (photoPathArray.length-1)) {
+		clickedPhotoIndex = 0;
+	};
+	$('#gallery').fadeOut(500, function() {
+		htmlGalleryPhoto = '<a href="#"><img src="' + photoPathArray[clickedPhotoIndex] + '"/></a>';
+		$('#gallery').html(htmlGalleryPhoto);
+		$('#gallery').fadeIn(500);
+		console.log('nextphoto is ' + htmlFirstGalleryPhoto);
+	});
+}
+
+
+function goToPreviousPhoto() {
+	if (clickedPhotoIndex > 0) {
+		clickedPhotoIndex -= 1;
+	} else if (clickedPhotoIndex == 0) {
+		clickedPhotoIndex =  photoPathArray.length;
+	}
+	$('#gallery').fadeOut(500, function() {
+		htmlGalleryPhoto = '<a href="#"><img src="' + photoPathArray[clickedPhotoIndex] + '"/></a>';
+		$('#gallery').html(htmlGalleryPhoto);
+		$('#gallery').fadeIn(500);
+		console.log('previous photo is ' + htmlFirstGalleryPhoto);
+	});
+}
+
+/*lanches full screen*/
+function goFullScreen() {
+	var fullScreenDiv = document.getElementById('gallery');
+	function fullScreen(fullScreenDiv) {
+		if(fullScreenDiv.requestFullScreen) {
+    		fullScreenDiv.requestFullScreen();
+  		} else if(fullScreenDiv.webkitRequestFullScreen ) {
+    		fullScreenDiv.webkitRequestFullScreen();
+  		} else if(fullScreenDiv.mozRequestFullScreen) {
+    		fullScreenDiv.mozRequestFullScreen();
+  		}
+  	}	
+	fullScreen(fullScreenDiv);
+}
+
 /*calling all functions in the right order*/
 $(document).ready( function() {
 	populatePhotoArray();
 	getClickedPhotoIndex();
-	openGalleryView();
+	switchToGalleryView();
 	navigatePhotoGallery();
-/*	nextGalleryPhoto;
-	previousGalleryPhoto;
-	exitPhotoGallery*/
 });
 
+
+/*
+TODOs:
+1) maxheigth on Gallery
+2) naspaces for functions
+	var THEGIAS = {
+		functionName: function() {
+			stuff
+		}
+	}
+	THEGIAS.functionName (calling function)
+	init plus second tier functions (helpers)
+3) fadein/out opacity at 0.3
+4) #gallery border shadow?
+*/
