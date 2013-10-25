@@ -3,7 +3,7 @@
 /*****************************/	
 
 body {
-	background: rgb(249,249,249);
+	background: rgb(247,247,244);
 	font-family: 'Playfair Display','Averia Serif Libre',georgia,palatino,Arial,serif;
 	font-size: 16px; /* default font size for your site */
 }
@@ -103,16 +103,20 @@ a:hover img{
 
 #gallery {
 	width: 100%;
+	height:100%;
 }
 
-#gallery a {
-	width: 100%;
+.landscape {
+	width: 98%;
+	max-height: 98%;
+	margin: 1%;
 }
 
-#gallery a img{
-	width: 100%;
-	border-width: 2% 2% 0% 2%;
-}
+.portrait {
+	height: 98%;
+	max-width: 98%;
+	margin: 1% 30%; /* ????????? using auto to center the image doesn't work.. */
+}}
 
 #gallery a:hover img{
 	opacity: 1;

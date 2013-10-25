@@ -1,24 +1,29 @@
 /*define all variables*/
 var photoPathArray = [];
-var nextPhoto = [13, 32, 39, 40];  /*enter, space, right and down arrow*/
-var previousPhoto = [37, 38];  /*left and up arrow*/
+var photoOrientationArray = [];
+var nextPhotoKeys = [13, 32, 39, 40];  /*enter, space, right and down arrow*/
+var previousPhotoKeys = [37, 38];  /*left and up arrow*/
 var clickedPhotoIndex;
-var htmlGallery;
-var galleryWindow;
 var firstGalleryPhoto;
-var htmlFirstGalleryPhoto;
-var htmlGalleryPhoto;
 var keyboardInput;
 var fullScreenDiv
 
 
-/*populate array with all photo on the page*/
+/*populate one array with all photo on page plus one array with orientation CSS class*/
 function populatePhotoArray() {
 	$('#portfolio a img').each( function(i) {
 		photoPathArray[i] = $(this).attr('src');
-/*		console.log(photoPathArray[i]);*/
+		/*check image orientation for optimal gallery display*/
+		if ( ($(this).width()) / ($(this).height() ) >= 1) {
+			photoOrientationArray[i] = 'landscape';
+/*			console.log(photoPathArray[i] + " " + photoOrientationArray[i]);		*/
+		} else {
+			photoOrientationArray[i] = 'portrait';			
+/*		 	console.log(photoPathArray[i] + " " +  photoOrientationArray[i]);		*/
+		}
 	});
-};
+}
+
 
 /*store the path of the clicked image*/
 function getClickedPhotoIndex() {
@@ -29,76 +34,75 @@ function getClickedPhotoIndex() {
 		firstGalleryPhoto = photoPathArray[clickedPhotoIndex]
 /*		console.log('clicked on photo ' + firstGalleryPhoto);*/
 	});
-};
+}
+
 
 /*open gallery view, in the same tab, showing clicked photo*/
 function switchToGalleryView() {
 	$('#gallery').hide();
 	$('#portfolio a img').on('click', function(event) {
 		event.preventDefault();
-		htmlFirstGalleryPhoto = '<a href="#"><img src="' + firstGalleryPhoto + '"/></a>'
 		$('header, #portfolio, footer').hide();
 		goFullScreen();
 		$('#gallery').show();
-		$('#gallery').html(htmlFirstGalleryPhoto);
-		console.log('just gone full screen');
+		$('#gallery img').attr('src', firstGalleryPhoto).addClass(photoOrientationArray[clickedPhotoIndex]);
+/*		console.log('just gone full screen');*/
 	});
-};
+}
+
 
 /*handles navigation in the gallery view*/
 function navigatePhotoGallery() {
-/*	$('#gallery').on('click', function(event) {
+	$('#gallery').on('click', function(event) {
 		event.preventDefault();
 			goToNextPhoto();
-			console.log('logging clicks');
-		});*/
-	$('#gallery').on('keyup', function(event) {
+/*			console.log('logging clicks');*/
+		});
+	$(document).on('keyup', function(event) {
+		event.preventDefault();
 		keyboardInput = event.which;
-		console.log('logging key inputs ' + keyboardInput);
-		if (nextPhoto.indexOf(keyboardInput) >= 0) {
+/*		console.log('logging key inputs ' + keyboardInput);*/
+		if (nextPhotoKeys.indexOf(keyboardInput) >= 0) {
 			goToNextPhoto();
-		} else if (previousPhoto.indexOf(keyboardInput) >= 0) {
+		} else if (previousPhotoKeys.indexOf(keyboardInput) >= 0) {
 			goToPreviousPhoto();
-		} /*else if (keyboardInput == (27 || 46) {  
+		} else if (keyboardInput == (27 || 46)) {  /*represtinate previosu page on delete in after leaving fullScreen wiht escape*/
 			$('header, #portfolio, footer').show();
 			$('#gallery').hide();
-		}   ????? pressing delete reloads the page?    */
-		return false;
+		}   
 	});
-/*	on mouse-click/right-arrow-key/right-arrow-button 'next'
-	on delete/left-arrow-key/left-arrow-button 'previous'
-	on esc revert to last image shown*/
-};
+}
 
 
 function goToNextPhoto() {
+		console.log('called goToNextPhoto');
 	if (clickedPhotoIndex < (photoPathArray.length-1)) {
 		clickedPhotoIndex += 1;
 	} else if (clickedPhotoIndex == (photoPathArray.length-1)) {
 		clickedPhotoIndex = 0;
 	};
 	$('#gallery').fadeOut(500, function() {
-		htmlGalleryPhoto = '<a href="#"><img src="' + photoPathArray[clickedPhotoIndex] + '"/></a>';
-		$('#gallery').html(htmlGalleryPhoto);
+		$('#gallery img').attr('src', photoPathArray[clickedPhotoIndex]).addClass(photoOrientationArray[clickedPhotoIndex]);
 		$('#gallery').fadeIn(500);
-		console.log('nextphoto is ' + htmlFirstGalleryPhoto);
+/*		console.log("the next photo's src is " + photoPathArray[clickedPhotoIndex]);*/
 	});
 }
 
 
 function goToPreviousPhoto() {
+		console.log('called goToPreviousPhoto');
 	if (clickedPhotoIndex > 0) {
 		clickedPhotoIndex -= 1;
 	} else if (clickedPhotoIndex == 0) {
-		clickedPhotoIndex =  photoPathArray.length;
+		clickedPhotoIndex =  photoPathArray.length - 1;
 	}
-	$('#gallery').fadeOut(500, function() {
-		htmlGalleryPhoto = '<a href="#"><img src="' + photoPathArray[clickedPhotoIndex] + '"/></a>';
-		$('#gallery').html(htmlGalleryPhoto);
-		$('#gallery').fadeIn(500);
-		console.log('previous photo is ' + htmlFirstGalleryPhoto);
+	$('#gallery img').fadeOut(500, function() {
+		$('#gallery img').attr('src', photoPathArray[clickedPhotoIndex]).addClass(photoOrientationArray[clickedPhotoIndex]);
+		$('#gallery img').fadeIn(500);
+/*		console.log("the previous photo's src is " + photoPathArray[clickedPhotoIndex]);*/
 	});
 }
+
 
 /*lanches full screen*/
 function goFullScreen() {
@@ -114,6 +118,7 @@ function goFullScreen() {
   	}	
 	fullScreen(fullScreenDiv);
 }
+
 
 /*calling all functions in the right order*/
 $(document).ready( function() {
@@ -135,6 +140,6 @@ TODOs:
 	}
 	THEGIAS.functionName (calling function)
 	init plus second tier functions (helpers)
-3) fadein/out opacity at 0.3
-4) #gallery border shadow?
+3) keep background black fading forward (ok fading backwards)
+4) #gallery border shadow? use same colour as in mainpage?
 */
