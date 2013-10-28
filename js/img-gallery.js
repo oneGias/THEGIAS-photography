@@ -16,10 +16,10 @@ function populatePhotoArray() {
 		/*check image orientation for optimal gallery display*/
 		if ( ($(this).width()) / ($(this).height() ) >= 1) {
 			photoOrientationArray[i] = 'landscape';
-/*			console.log(photoPathArray[i] + " " + photoOrientationArray[i]);		*/
+/*			console.log(photoPathArray[i] + " " + photoOrientationArray[i]);*/
 		} else {
 			photoOrientationArray[i] = 'portrait';			
-/*		 	console.log(photoPathArray[i] + " " +  photoOrientationArray[i]);		*/
+/*		 	console.log(photoPathArray[i] + " " +  photoOrientationArray[i]);*/
 		}
 	});
 }
