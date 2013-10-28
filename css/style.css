@@ -116,7 +116,7 @@ a:hover img{
 	height: 98%;
 	max-width: 98%;
 	margin: 1% 30%; /* ????????? using auto to center the image doesn't work.. */
-}}
+}
 
 #gallery a:hover img{
 	opacity: 1;
@@ -203,6 +203,11 @@ footer p {
 	#portfolio {
 		width: 96%;
 		margin: 2% 2% 0% 2%;
+	}
+
+	.portrait {
+	height: 98%;
+	max-width: 98%;
 	}
 
 	footer p {
