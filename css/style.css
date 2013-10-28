@@ -176,27 +176,28 @@ footer p {
 		margin: 3% 2% 0% 2%;
 	}
 
-	nav ul li a {
-		display: inline-block;
-		float: right;
-		font-size: 1.3rem;
-		letter-spacing:0.1rem;
-		line-height: 1.1rem;	
-	}
-
 	.home {
 		float:left;
 		margin-left: 1%;
 	}
 
-	nav .menu {
-		font-size: 1.2rem;
-		letter-spacing:0.1rem;	
+	nav .home li a {
+		font-size: 1.4rem;
+		letter-spacing:0.2rem;
+		line-height: 100%;
 	}
 
 	.menu {
 		float: right;
 		margin-right: 1%;
+	}
+
+	nav .menu li a {
+		display: inline-block;
+		float: right;
+		font-size: 1.1rem;
+		letter-spacing:0.2rem;
+		line-height: 100%;
 	}
 
 	#portfolio {
