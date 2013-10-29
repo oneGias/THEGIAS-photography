@@ -58,7 +58,7 @@ function navigatePhotoGallery() {
 			goToNextPhoto();
 /*			console.log('logging clicks');*/
 		});
-	$(document).on('keyup', function(event) {
+	$(document).on('keydown', function(event) {
 		event.preventDefault();
 		keyboardInput = event.which;
 /*		console.log('logging key inputs ' + keyboardInput);*/
@@ -66,9 +66,8 @@ function navigatePhotoGallery() {
 			goToNextPhoto();
 		} else if (previousPhotoKeys.indexOf(keyboardInput) >= 0) {
 			goToPreviousPhoto();
-		} else if (keyboardInput == (27 || 46)) {  /*represtinate previosu page on delete in after leaving fullScreen wiht escape*/
-			$('header, #portfolio, footer').show();
-			$('#gallery').hide();
+		} else if (keyboardInput == (8 || 46)) {  /*represtinate previosu page on delete in after leaving fullScreen wiht escape*/
+			location.reload();
 		}   
 	});
 }
