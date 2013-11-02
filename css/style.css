@@ -35,7 +35,7 @@ nav ul li a {
 }
 
 nav .home li a {
-	padding-bottom: 1rem;
+	padding: 0.5rem 0 1rem;
 	letter-spacing:0.2rem;
 }
 
@@ -174,7 +174,7 @@ footer p {
 /*       Media queries       */
 /*****************************/	
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 	header {
 		position: static;
 		width: 96%;
