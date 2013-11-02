@@ -31,12 +31,12 @@ nav ul li a {
 	text-decoration: none;
 	margin-bottom: 0.4rem;
 	color: #2c3e50;
-	font-size: 2rem;
+	font-size: 2.5rem;
 }
 
 nav .home li a {
 	padding: 0.5rem 0 1rem;
-	letter-spacing:0.2rem;
+	letter-spacing:0.1rem;
 }
 
 nav .menu li a {
@@ -180,9 +180,9 @@ footer p {
 	}
 
 	nav .home li a {
-		font-size: 1.4rem;
+		padding-top: 0rem;
+		font-size: 2.4rem;
 		letter-spacing:0.2rem;
-		line-height: 100%;
 	}
 
 	.menu {
@@ -193,9 +193,8 @@ footer p {
 	nav .menu li a {
 		display: inline-block;
 		float: right;
-		font-size: 1.1rem;
+		font-size: 1.6rem;
 		letter-spacing:0.2rem;
-		line-height: 125%;
 	}
 
 	#portfolio {
