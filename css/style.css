@@ -4,7 +4,7 @@
 
 body {
 	background: rgb(247,247,244);
-	font-family: 'Playfair Display','Averia Serif Libre',georgia,palatino,Arial,serif;
+	font-family: 'Nixie One', Georgia, Helvetica,serif;
 	font-size: 16px; /* default font size for your site */
 }
 
@@ -30,22 +30,22 @@ nav ul li a {
 	display: block;
 	text-decoration: none;
 	margin-bottom: 0.4rem;
-	color: black;
-	font-size: 1.4rem;
+	color: #2c3e50;
+	font-size: 2rem;
 	letter-spacing:0.1rem;
 }
 
 nav .menu li a {
-	color: red;
-	font-size: 1.3rem;
+	color: #2c3e50;
+	font-size: 1.7rem;
 }
 
 nav ul li a:hover {
-	text-shadow: 1px 1px 10px;
+	text-shadow: 1px 1px 20px;
 }
 
 header .selected {
-	text-shadow: 2px 2px 15px;
+	text-decoration: underline;
 }
 
 
@@ -94,7 +94,7 @@ header .selected {
 }
 
 a:hover img{
-	opacity: 0.6;
+	opacity: 0.8;
 }
 
 /*****************************/		
